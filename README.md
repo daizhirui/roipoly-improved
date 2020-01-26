@@ -3,7 +3,7 @@
 ## How to launch
 
 ```bash
-python3 image_labeling.py --roi-type stopsign,other_red,green,blue,yellow,gray [path to your dataset]
+python3 image_labeling.py --roi-type stopsign,other_red,green,blue,yellow,gray,white [path to your dataset]
 ```
 
 **Before launching the program, make sure the train-set folder doesn't contain images you don't want to label**
