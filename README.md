@@ -10,7 +10,7 @@ python3 image_labeling.py --roi-type stopsign,other_red,green,blue,yellow,gray [
 
 ### More detailed command
 
-```bash
+```
 usage: image_labeling.py [-h] [--roi-type ROI_TYPES] [--output PICKLE_NAME] image_dir
 
 Label image ROIs
@@ -48,7 +48,7 @@ with open('mask.pickle', 'rb') as f:
 ```
 
 Sample output:
-```shell script
+```
 >>> a[0]  # image mask 
 {'99.jpg': array([[0., 0., 0., ..., 0., 0., 0.],
        [0., 0., 0., ..., 0., 0., 0.],
