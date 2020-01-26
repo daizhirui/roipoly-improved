@@ -80,8 +80,7 @@ if __name__ == '__main__':
                   () if args.roi_types is None else args.roi_types.split(','))
         # image labeling ended, now save the mask
         with open(args.pickle_name, 'wb') as f:
-            pickle.dump(gui.mask_dict, f)
-            pickle.dump(gui.multi_roi.roi_values, f)
+            pickle.dump((gui.mask_dict, gui.multi_roi.roi_values), f)
     else:
         logging.log(logging.ERROR, "{} doesn't exist!".format(args.image_dir))
         exit(1)
