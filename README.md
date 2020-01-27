@@ -76,3 +76,9 @@ roi = plt.imread('99.jpg')[mask == 1]  # get stop sign roi
 If you have multiple pickle files created by `image_labeling.py`, we can use `pickle_merge` to merge these files into a single one.
 
 It also convert mask array to `np.array(dtype=np.uint8)`, which reduces 75% file size if those pickles are stored as int32.
+
+Here is an example of using `pickle_merge.py`
+
+```shell script
+python3 pickle_merge.py mask1.pickle mask2.pickle
+```
