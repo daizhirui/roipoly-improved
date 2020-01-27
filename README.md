@@ -66,5 +66,13 @@ To extract the roi of specific type you want, here is a sample code:
 import numpy as np
 import matplotlib.pyplot as plt
 mask = a[0]['99.jpg']
-roi = plt.imread('99.jpg')[mask == 1]  # get stopsign roi
+roi = plt.imread('99.jpg')[mask == 1]  # get stop sign roi
 ```
+
+## Other Tools
+
+### pickle_merge
+
+If you have multiple pickle files created by `image_labeling.py`, we can use `pickle_merge` to merge these files into a single one.
+
+It also convert mask array to `np.array(dtype=np.uint8)`, which reduces 75% file size if those pickles are stored as int32.
