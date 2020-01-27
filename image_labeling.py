@@ -32,7 +32,8 @@ class GUI:
         self.image_dict = dict()
         if os.path.isdir(image_dir):
             image_names = sorted(os.listdir(image_dir))
-            image_names.remove('.DS_Store')
+            if '.DS_Store' in image_names:
+                image_names.remove('.DS_Store')
             cnt = 0
             logging.log(logging.INFO, "Loading images ...")
             for image_name in tqdm(image_names):
@@ -74,14 +75,34 @@ if __name__ == '__main__':
     parser.add_argument('image_dir',
                         help='the directory of images to be labelled')
     args = parser.parse_args()
+    # check pickle file path
+    if os.path.exists(args.pickle_name):
+        logging.log(logging.WARNING,
+                    "{} will be overwritten".format(args.pickle_name))
+        if not os.path.isfile(args.pickle_name):
+            logging.log(logging.ERROR, "{} exists but it is not a file!".format(
+                args.pickle_name))
+            exit(1)
     # check image folder path
     if os.path.exists(args.image_dir):
         image_dir = os.path.abspath(args.image_dir)
         gui = GUI(args.image_dir,
                   () if args.roi_types is None else args.roi_types.split(','))
         # image labeling ended, now save the mask
-        with open(args.pickle_name, 'wb') as f:
-            pickle.dump((gui.mask_dict, gui.multi_roi.roi_values), f)
+        error_happen = False
+        while True:
+            if error_happen:
+                error_happen = False
+                logging.log(logging.WARNING, "Some errors happen while writing"
+                                             "to {}".format(args.pickle_name))
+                args.pickle_name = input("Please give a new pickle file path: ")
+            try:
+                with open(args.pickle_name, 'wb') as f:
+                    pickle.dump((gui.mask_dict, gui.multi_roi.roi_values), f)
+            except:
+                error_happen = True
+                continue
+            exit(0)
     else:
         logging.log(logging.ERROR, "{} doesn't exist!".format(args.image_dir))
         exit(1)
