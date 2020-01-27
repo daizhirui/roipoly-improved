@@ -240,7 +240,8 @@ class MultiRoi:
     def image(self, img):
         self.__image = img
         self.__mask = None if img is None else np.zeros(img.shape)
-        self.mask = None if img is None else np.zeros(img.shape[:2])
+        self.mask = None if img is None else np.zeros(img.shape[:2],
+                                                      dtype=np.uint8)
         if self.__image is not None:
             self.update_plt_mask()
             self.update_plt_img()

@@ -32,6 +32,7 @@ class GUI:
         self.image_dict = dict()
         if os.path.isdir(image_dir):
             image_names = sorted(os.listdir(image_dir))
+            image_names.remove('.DS_Store')
             cnt = 0
             logging.log(logging.INFO, "Loading images ...")
             for image_name in tqdm(image_names):
