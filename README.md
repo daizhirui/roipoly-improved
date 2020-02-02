@@ -69,6 +69,10 @@ mask = a[0]['99.jpg']
 roi = plt.imread('99.jpg')[mask == 1]  # get stop sign roi
 ```
 
+### Attention
+
+Because this tool use 0 to mark unlabeled pixel, the minimum label index is 1.
+
 ## Other Tools
 
 ### pickle_merge

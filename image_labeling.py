@@ -49,6 +49,7 @@ class GUI:
         self.unprocessed_images = sorted(list(self.image_dict.keys()))
         self.mask_dict = {}
         self.current_image = self.unprocessed_images.pop()
+        logging.log(logging.INFO, "Load img: {}".format(self.current_image))
         self.multi_roi = MultiRoi(img=self.image_dict[self.current_image],
                                   roi_types=roi_types,
                                   finish_callback=self.multiroi_finish_callback)
